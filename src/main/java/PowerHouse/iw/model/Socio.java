@@ -1,74 +1,40 @@
 package PowerHouse.iw.model;
 
-import jakarta.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
-public class Socio {
+public class Socio extends Usuario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private double saldo;
+    private String actividadReservada;
 
-    @Column(nullable = false)
-    private String nombre;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String telefono;
-
-    // Constructor por defecto
-    public Socio() {
-    }
-
-    // Constructor con parámetros
-    public Socio(String nombre, String email, String telefono) {
-        this.nombre = nombre;
-        this.email = email;
-        this.telefono = telefono;
-    }
+    @OneToMany(mappedBy = "socio")
+    private List<Pago> pagos;  // Relación con pagos
 
     // Getters y Setters
-    public Long getId() {
-        return id;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getActividadReservada() {
+        return actividadReservada;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setActividadReservada(String actividadReservada) {
+        this.actividadReservada = actividadReservada;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Pago> getPagos() {
+        return pagos;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    @Override
-    public String toString() {
-        return "Socio{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
     }
 }
