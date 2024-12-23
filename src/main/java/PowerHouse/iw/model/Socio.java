@@ -9,6 +9,7 @@ public class Socio extends Usuario {
 
     private double saldo;
     private String actividadReservada;
+    private boolean activo;
 
     @OneToMany(mappedBy = "socio")
     private List<Pago> pagos;  // Relación con pagos
@@ -36,5 +37,13 @@ public class Socio extends Usuario {
 
     public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

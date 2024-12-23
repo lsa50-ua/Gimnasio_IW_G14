@@ -2,7 +2,9 @@ package PowerHouse.iw.repository;
 
 import PowerHouse.iw.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    // Métodos adicionales si se necesitan
+    Usuario findByEmail(String email);
 }
