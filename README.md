@@ -3,7 +3,7 @@
 
 # Partes del proyecto
 ## Backend
-- Desarrollado con spring boot java con una APIRest
+- Desarrollado con spring boot java en conjunto a una base de datos mySQL con una APIRest.
 
 ## Frontend
 - Desarrollado con el framework Angular, que consume del API del backend.
