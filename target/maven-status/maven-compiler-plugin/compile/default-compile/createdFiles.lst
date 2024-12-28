@@ -1,0 +1,12 @@
+PowerHouse/iw/model/WebMaster.class
+PowerHouse/iw/model/Monitor.class
+PowerHouse/iw/PowerHouseApplication.class
+PowerHouse/iw/repository/UsuarioRepository.class
+PowerHouse/iw/controller/LoginController.class
+PowerHouse/iw/controller/HolaMundoController.class
+PowerHouse/iw/model/Usuario.class
+PowerHouse/iw/model/Actividad.class
+PowerHouse/iw/model/Socio.class
+PowerHouse/iw/model/Reserva.class
+PowerHouse/iw/model/Pago.class
+PowerHouse/iw/service/UsuarioService.class
