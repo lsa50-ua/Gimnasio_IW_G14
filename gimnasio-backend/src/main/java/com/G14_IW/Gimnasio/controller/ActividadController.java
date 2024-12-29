@@ -33,4 +33,6 @@ public class ActividadController {
     public void saveUpdate(@PathVariable("actividadId") Long actividadId){
         actividadService.deleteById(actividadId);
     }
+
+
 }

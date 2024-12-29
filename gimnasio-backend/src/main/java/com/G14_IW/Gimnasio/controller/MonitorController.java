@@ -33,4 +33,14 @@ public class MonitorController {
     public void saveUpdate(@PathVariable("monitorId") Long monitorId) {
         monitorService.deleteById(monitorId);
     }
+
+    @PutMapping("{monitorId}/addMonitorActividad/{usuarioId}")
+    public void addMonitorActividad(@PathVariable("monitorId") Long monitorId, @PathVariable("usuarioId") Long usuarioId) {
+        monitorService.addMonitorActividad(monitorId, usuarioId);
+    }
+
+    @PutMapping("{monitorId}/removeMonitorActividad/{usuarioId}")
+    public void removeMonitorActividad(@PathVariable("monitorId") Long monitorId, @PathVariable("usuarioId") Long usuarioId) {
+        monitorService.removeMonitorActividad(monitorId, usuarioId);
+    }
 }

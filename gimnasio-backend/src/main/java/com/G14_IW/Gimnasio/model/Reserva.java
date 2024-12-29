@@ -19,6 +19,21 @@ public class Reserva {
     @JoinColumn(name = "actividad_id", nullable = false)
     private Actividad actividad;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Socio socio;
+
+    // Constructores
+    public Reserva() {
+    }
+
+    public Reserva(Date fechaReserva, String hora, Actividad actividad, Socio socio) {
+        this.fechaReserva = fechaReserva;
+        this.hora = hora;
+        this.actividad = actividad;
+        this.socio = socio;
+    }
+
     // Getters y Setters
     public Long getId() {
         return id;
@@ -50,5 +65,13 @@ public class Reserva {
 
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
+    }
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
 }

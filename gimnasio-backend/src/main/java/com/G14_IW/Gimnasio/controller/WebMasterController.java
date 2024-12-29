@@ -33,4 +33,14 @@ public class WebMasterController {
     public void saveUpdate(@PathVariable("webMasterId") Long webMasterId) {
         webMasterService.deleteById(webMasterId);
     }
+
+    @PutMapping("{webMasterId}/activarSocio/{usuarioId}")
+    public void activarSocio(@PathVariable("webMasterId") Long webMasterId, @PathVariable("usuarioId") Long usuarioId) {
+        webMasterService.activarSocio(webMasterId, usuarioId);
+    }
+
+    @PutMapping("{webMasterId}/desactivarSocio/{usuarioId}")
+    public void desactivarSocio(@PathVariable("webMasterId") Long webMasterId, @PathVariable("usuarioId") Long usuarioId) {
+        webMasterService.desactivarSocio(webMasterId, usuarioId);
+    }
 }

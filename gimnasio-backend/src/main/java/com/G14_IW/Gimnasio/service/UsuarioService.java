@@ -28,4 +28,26 @@ public class UsuarioService {
     public void deleteById(Long id){
         usuarioRepository.deleteById(id);
     }
+
+    public void activarUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        if (usuario.isActivo()) {
+            throw new RuntimeException("El usuario ya está activo");
+        }
+
+        usuario.setActivo(true);
+        usuarioRepository.save(usuario);
+    }
+
+    public void desactivarUsuario(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        if (!usuario.isActivo()) {
+            throw new RuntimeException("El usuario ya está desactivado");
+        }
+
+        usuario.setActivo(false);
+        usuarioRepository.save(usuario);
+    }
 }

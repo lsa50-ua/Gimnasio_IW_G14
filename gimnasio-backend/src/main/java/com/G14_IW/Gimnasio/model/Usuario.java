@@ -13,6 +13,7 @@ public class Usuario {
     private Long id;
     private String email;
     private String password;
+    private boolean activo;
 
     public Usuario(String email, String password) {
         this.email = email;
@@ -45,5 +46,13 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

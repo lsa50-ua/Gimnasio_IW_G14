@@ -25,7 +25,7 @@ public class Actividad {
     private TipoActividad tipoActividad;
 
     @ManyToOne
-    @JoinColumn(name = "monitor_id", nullable = false)
+    @JoinColumn(name = "monitor_id")
     private Monitor monitor;
 
     @OneToMany(mappedBy = "actividad")
