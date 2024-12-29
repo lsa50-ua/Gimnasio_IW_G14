@@ -42,5 +42,5 @@ public class MonitorController {
     @PutMapping("{monitorId}/removeMonitorActividad/{usuarioId}")
     public void removeMonitorActividad(@PathVariable("monitorId") Long monitorId, @PathVariable("usuarioId") Long usuarioId) {
         monitorService.removeMonitorActividad(monitorId, usuarioId);
-    }
+    }       
 }
