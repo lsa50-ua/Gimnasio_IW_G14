@@ -2,6 +2,7 @@ package com.G14_IW.Gimnasio.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
 @Data
 @Entity
@@ -11,7 +12,15 @@ public class TipoActividad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String tipo;
+
+    public TipoActividad(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public TipoActividad() {
+    }
 
     // Getters y Setters
     public Long getId() {

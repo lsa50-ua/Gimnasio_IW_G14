@@ -2,6 +2,7 @@ package com.G14_IW.Gimnasio.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Actividad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String nombre;
     private String diaSemana;
     private String horas;
@@ -30,6 +32,20 @@ public class Actividad {
 
     @OneToMany(mappedBy = "actividad")
     private List<Reserva> reservas;
+
+    public Actividad(String nombre, String diaSemana, String horas, String fechaFinActividad, int capacidad, float precio, TipoActividad tipoActividad, Monitor monitor) {
+        this.nombre = nombre;
+        this.diaSemana = diaSemana;
+        this.horas = horas;
+        this.fechaFinActividad = fechaFinActividad;
+        this.capacidad = capacidad;
+        this.precio = precio;
+        this.tipoActividad = tipoActividad;
+        this.monitor = monitor;
+    }
+
+    public Actividad() {
+    }
 
     // Getters y Setters
     public Long getId() {
