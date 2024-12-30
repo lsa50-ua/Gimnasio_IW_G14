@@ -39,4 +39,14 @@ public class UsuarioController {
     public String getTipo(@PathVariable("userId") Long userId){
         return usuarioService.getTipo(userId);
     }
+
+    @PostMapping("/register")
+    public void register(@RequestBody Usuario user) {
+        usuarioService.register(user);
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody Usuario user) {
+        usuarioService.login(user);
+    }
 }

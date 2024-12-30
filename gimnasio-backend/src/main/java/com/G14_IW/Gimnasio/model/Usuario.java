@@ -1,6 +1,7 @@
 package com.G14_IW.Gimnasio.model;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
 @Data
 @Entity
@@ -11,13 +12,17 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NonNull
     private String email;
+    @NonNull
     private String password;
     private boolean activo;
 
     public Usuario(String email, String password) {
         this.email = email;
         this.password = password;
+        this.activo = false;
     }
 
     public Usuario() {

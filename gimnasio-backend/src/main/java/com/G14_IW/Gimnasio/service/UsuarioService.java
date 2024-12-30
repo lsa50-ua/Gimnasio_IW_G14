@@ -55,4 +55,41 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         return usuario.getTipo();
     }
+
+    public void register(Usuario user) {
+        Optional<Usuario> existingUser = usuarioRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("El correo ya está registrado");
+        }
+
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new RuntimeException("El correo es un campo obligatorio");
+        }
+
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new RuntimeException("La contraseña es un campo obligatorio");
+        }
+
+        user.setActivo(false);
+        usuarioRepository.save(user);
+    }
+
+    public void login(Usuario user) {
+        Optional<Usuario> existingUser = usuarioRepository.findByEmail(user.getEmail());
+        if (existingUser.isEmpty()) {
+            throw new RuntimeException("El correo no está registrado");
+        }
+
+        Usuario usuario = existingUser.get();
+        if (!usuario.getPassword().equals(user.getPassword())) {
+            throw new RuntimeException("Contraseña incorrecta");
+        }
+
+        /*
+        Q: ¿Deberíamos permitir que un usuario inactivo inicie sesión?
+         ¿O que inicien sesión como Usuario esperando la validación?
+        if (!usuario.isActivo()) {
+            throw new RuntimeException("El usuario no está activo");
+        }*/
+    }
 }
