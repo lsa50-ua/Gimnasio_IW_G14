@@ -18,7 +18,8 @@ public class Actividad {
     private String nombre;
     private String diaSemana;
     private String horas;
-    private String fechaFinActividad;
+    private String fechaInicio;
+    private String fechaFin;
     private int capacidad;
     private float precio;
 
@@ -33,11 +34,12 @@ public class Actividad {
     @OneToMany(mappedBy = "actividad")
     private List<Reserva> reservas;
 
-    public Actividad(String nombre, String diaSemana, String horas, String fechaFinActividad, int capacidad, float precio, TipoActividad tipoActividad, Monitor monitor) {
+    public Actividad(String nombre, String diaSemana, String horas, String fechaInicio, String fechaFin, int capacidad, float precio, TipoActividad tipoActividad, Monitor monitor) {
         this.nombre = nombre;
         this.diaSemana = diaSemana;
         this.horas = horas;
-        this.fechaFinActividad = fechaFinActividad;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.capacidad = capacidad;
         this.precio = precio;
         this.tipoActividad = tipoActividad;
@@ -80,12 +82,20 @@ public class Actividad {
         this.horas = horas;
     }
 
-    public String getFechaFinActividad() {
-        return fechaFinActividad;
+    public String getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFechaFinActividad(String fechaFinActividad) {
-        this.fechaFinActividad = fechaFinActividad;
+    public void setFechaInicio(String fechaInicioActividad) {
+        this.fechaInicio = fechaInicioActividad;
+    }
+
+    public String getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(String fechaFinActividad) {
+        this.fechaFin = fechaFinActividad;
     }
 
     public int getCapacidad() {
