@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Login</h2>
+      </div>
+    </div>
+</div>
+<div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Encabezado -->
+      <h3 class="form-heading ">Por favor, inicie sesión para continuar</h3>
+      
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          id="email" 
+          formControlName="email" 
+          type="email" 
+          placeholder="Enter your email" 
+          class="form-control"
+          required
+        >
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <div class="error-message">
+            @if (loginForm.get('email')?.errors?.['required']) {
+              <small>Email is required.</small>
+            }
+            @if (loginForm.get('email')?.errors?.['email']) {
+              <small>Enter a valid email.</small>
+            }
+          </div>
+        }
+      </div>
+  
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input 
+          id="password" 
+          formControlName="password" 
+          type="password" 
+          placeholder="Enter your password" 
+          class="form-control"
+          required
+        >
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="error-message">
+            @if (loginForm.get('password')?.errors?.['required']) {
+              <small>Password is required.</small>
+            }
+            @if (loginForm.get('password')?.errors?.['minlength']) {
+              <small>Minimum 6 characters required.</small>
+            }
+            @if (loginForm.get('password')?.errors?.['pattern']) {
+              <small>Password must contain at least one lowercase letter, one capital letter, one simbol and one number.</small>
+            }
+          </div>
+        }
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+    </form>
+</div>
+  

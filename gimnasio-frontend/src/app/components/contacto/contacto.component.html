@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12"> 
+            <div class="banner-container">
+                <img class="banner-image w-100" src="leaderboard.png" alt="Banner">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Contacto</h2>
+        </div>
+    </div>
+</div>
+@if (submitted && contactForm.valid) {
+<div class="alert alert-success text-center">
+    <strong>Gracias por contactar con nosotros, nos pondremos en contacto lo antes posible.</strong>
+</div>
+}
+
+@if (!submitted || contactForm.invalid) {
+<div class="form-container">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Encabezado -->
+        <h3 class="form-heading ">Escribe tu mensaje en este formulario y le contactaremos lo antes posible.</h3>
+        
+        <!-- Nombre Field -->
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" formControlName="nombre" type="text" placeholder="Enter your name" class="form-control" required>
+            @if (contactForm.get('nombre')?.invalid && contactForm.get('nombre')?.touched) {
+            <div class="error-message">
+                @if (contactForm.get('nombre')?.errors?.['required']) {
+                <small>Name is required.</small>
+                }
+                @if (contactForm.get('mensaje')?.errors?.['minlength']) {
+                <small>Minimum 1 character required.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" type="email" placeholder="Enter your email" class="form-control" required>
+            @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+            <div class="error-message">
+                @if (contactForm.get('email')?.errors?.['required']) {
+                <small>Email is required.</small>
+                }
+                @if (contactForm.get('email')?.errors?.['email']) {
+                <small>Enter a valid email.</small>
+                }
+            </div>
+            }
+        </div>
+  
+        <!-- Mensaje Field -->
+        <div class="form-group">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" formControlName="mensaje" rows="3" class="form-control" placeholder="Escriba su mensaje aquí" required></textarea>
+            @if (contactForm.get('mensaje')?.invalid && contactForm.get('mensaje')?.touched) {
+            <div class="error-message">
+                @if (contactForm.get('mensaje')?.errors?.['required']) {
+                <small>Message is required.</small>
+                }
+                @if (contactForm.get('mensaje')?.errors?.['minlength']) {
+                <small>Minimum 10 characters required.</small>
+                }
+            </div>
+            }
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="contactForm.invalid" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+}
