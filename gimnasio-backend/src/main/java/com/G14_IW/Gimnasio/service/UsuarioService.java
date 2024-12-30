@@ -76,6 +76,15 @@ public class UsuarioService {
 
     public void login(Usuario user) {
         Optional<Usuario> existingUser = usuarioRepository.findByEmail(user.getEmail());
+
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new RuntimeException("El correo es un campo obligatorio");
+        }
+
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new RuntimeException("La contraseña es un campo obligatorio");
+        }
+
         if (existingUser.isEmpty()) {
             throw new RuntimeException("El correo no está registrado");
         }
