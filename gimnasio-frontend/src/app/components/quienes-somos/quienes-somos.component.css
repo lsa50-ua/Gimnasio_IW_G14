@@ -1,0 +1,56 @@
+/* Estilo para la sección "Quiénes Somos" */
+h2, h3 {
+    color: black;
+    font-weight: 600;
+  }
+  
+  h4 {
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .card {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+  }
+  
+  .card-text {
+    font-size: 1.1rem;
+  }
+  
+  .card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .img-fluid {
+    border-radius: 10px;
+  }
+  
+  .row.mt-4 {
+    margin-top: 30px;
+  }
+  
+  .row.justify-content-center {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre las tarjetas */
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 280px; /* Limitar el tamaño de las tarjetas */
+  }
+  
