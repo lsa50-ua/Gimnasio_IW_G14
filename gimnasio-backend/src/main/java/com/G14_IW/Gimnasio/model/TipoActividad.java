@@ -15,6 +15,10 @@ public class TipoActividad {
     @NonNull
     private String tipo;
 
+    private String descripcion;
+
+    private String imagen;
+
     public TipoActividad(String tipo) {
         this.tipo = tipo;
     }
@@ -37,5 +41,20 @@ public class TipoActividad {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
