@@ -2,7 +2,9 @@ package com.G14_IW.Gimnasio.service;
 
 import com.G14_IW.Gimnasio.model.Usuario;
 import com.G14_IW.Gimnasio.repository.UsuarioRepository;
+import com.G14_IW.Gimnasio.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -74,7 +76,7 @@ public class UsuarioService {
         usuarioRepository.save(user);
     }
 
-    public void login(Usuario user) {
+    public ResponseEntity<String> login(Usuario user) {
         Optional<Usuario> existingUser = usuarioRepository.findByEmail(user.getEmail());
 
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
@@ -94,6 +96,11 @@ public class UsuarioService {
             throw new RuntimeException("Contraseña incorrecta");
         }
 
+        // Generar un token
+        String token = JwtUtil.generateToken(user.getEmail());
+
+        return ResponseEntity.ok(token);
+
         /*
         Q: ¿Deberíamos permitir que un usuario inactivo inicie sesión?
          ¿O que inicien sesión como Usuario esperando la validación?
@@ -101,4 +108,23 @@ public class UsuarioService {
             throw new RuntimeException("El usuario no está activo");
         }*/
     }
+
+    public ResponseEntity<String> validarToken(String token) {
+        // Quitar el prefijo "Bearer " del token
+        if (token.startsWith("Bearer ")) {
+            token = token.substring(7);
+        }
+
+        if (token == null || token.isEmpty()) {
+            throw new RuntimeException("Token vacío");
+        }
+
+        if (!JwtUtil.validateToken(token)) {
+            throw new RuntimeException("Token inválido");
+        }
+
+        String email = JwtUtil.getEmailFromToken(token);
+        return ResponseEntity.ok("Token válido para el usuario: " + email);
+    }
+
 }

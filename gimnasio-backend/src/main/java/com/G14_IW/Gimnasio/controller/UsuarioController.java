@@ -3,6 +3,7 @@ package com.G14_IW.Gimnasio.controller;
 import com.G14_IW.Gimnasio.model.Usuario;
 import com.G14_IW.Gimnasio.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,7 +47,12 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public void login(@RequestBody Usuario user) {
-        usuarioService.login(user);
+    public ResponseEntity<String> login(@RequestBody Usuario user) {
+        return usuarioService.login(user);
+    }
+
+    @GetMapping("/validarToken")
+    public void validarToken(@RequestHeader("token") String token) {
+        usuarioService.validarToken(token);
     }
 }
