@@ -19,9 +19,14 @@ public class TipoActividadController {
         return tipoActividadService.getTipoActividades();
     }
 
-    @GetMapping("/{tipoActividadId}")
+    @GetMapping("/id/{tipoActividadId}")
     public TipoActividad getById(@PathVariable("tipoActividadId") Long tipoActividadId){
         return tipoActividadService.getTipoActividad(tipoActividadId);
+    }
+
+    @GetMapping("/nombre/{nombre}")
+    public TipoActividad getByNombre(@PathVariable("nombre") String nombre){
+        return tipoActividadService.getTipoActividadByNombre(nombre);
     }
 
     @PostMapping

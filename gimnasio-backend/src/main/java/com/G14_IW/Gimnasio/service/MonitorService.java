@@ -2,7 +2,6 @@ package com.G14_IW.Gimnasio.service;
 
 import com.G14_IW.Gimnasio.model.Actividad;
 import com.G14_IW.Gimnasio.model.Monitor;
-import com.G14_IW.Gimnasio.model.Usuario;
 import com.G14_IW.Gimnasio.repository.ActividadRepository;
 import com.G14_IW.Gimnasio.repository.MonitorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +39,8 @@ public class MonitorService {
 
         monitor.getActividades().add(actividad);
         actividad.setMonitor(monitor);
-        monitorRepository.save(monitor);
         actividadRepository.save(actividad);
+        monitorRepository.save(monitor);
     }
 
     public void removeMonitorActividad(Long monitorId, Long actividadId) {
