@@ -34,4 +34,9 @@ public class UsuarioController {
     public void saveUpdate(@PathVariable("userId") Long userId){
         usuarioService.deleteById(userId);
     }
+
+    @GetMapping("/tipo/{userId}")
+    public String getTipo(@PathVariable("userId") Long userId){
+        return usuarioService.getTipo(userId);
+    }
 }

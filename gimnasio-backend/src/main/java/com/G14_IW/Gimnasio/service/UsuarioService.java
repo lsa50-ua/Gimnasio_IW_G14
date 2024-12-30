@@ -50,4 +50,9 @@ public class UsuarioService {
         usuario.setActivo(false);
         usuarioRepository.save(usuario);
     }
+
+    public String getTipo(Long id){
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return usuario.getTipo();
+    }
 }

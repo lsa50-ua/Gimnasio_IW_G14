@@ -55,4 +55,16 @@ public class Usuario {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public String getTipo() {
+        if (this instanceof WebMaster) {
+            return "WebMaster";
+        } else if (this instanceof Monitor) {
+            return "Monitor";
+        } else if (this instanceof Socio) {
+            return "Socio";
+        } else {
+            return "Usuario";
+        }
+    }
 }
