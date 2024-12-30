@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActividadService } from '../../services/actividad.service';
+import { Actividad } from '../../models/actividad';
 
 @Component({
   selector: 'app-actividades',
@@ -7,5 +9,18 @@ import { Component } from '@angular/core';
   styleUrl: './actividades.component.css'
 })
 export class ActividadesComponent {
+  actividades: Actividad[] = [];
 
+  constructor(private actividadService: ActividadService) { }
+
+  ngOnInit(): void {
+    this.getAllActividades();
+    console.log(this.actividades);
+  }
+
+  getAllActividades() {
+    this.actividadService.getAll().subscribe(actividades => {
+      this.actividades = actividades;
+    });
+  }
 }
