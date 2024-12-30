@@ -17,7 +17,13 @@ public class Usuario {
     private String email;
     @NonNull
     private String password;
+    @NonNull
     private boolean activo;
+
+    private String telefono;
+    private String direccion;
+    private String ciudad;
+    private String codigoPostal;
 
     public Usuario(String email, String password) {
         this.email = email;
@@ -59,6 +65,38 @@ public class Usuario {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
     }
 
     public String getTipo() {
