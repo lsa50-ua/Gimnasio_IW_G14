@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +12,25 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$')]]
     });
   }
 
-  onSubmit(): void {
+  login(): void {
     if (this.loginForm.valid) {
-      console.log('Form Data:', this.loginForm.value);
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe(response => {
+        if (response.token) {
+          console.log('Credentials Valid');
+          this.authService.setToken(response.token);
+          this.router.navigate(['/home']);
+        }
+      });
     } else {
-      console.log('Form is invalid');
+      console.log('Invalid Credentials');
     }
   }
 }

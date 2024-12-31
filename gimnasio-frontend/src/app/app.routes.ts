@@ -6,6 +6,8 @@ import { QuienesSomosComponent } from './components/quienes-somos/quienes-somos.
 import { LoginComponent } from './components/login/login.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ActividadesComponent } from './components/actividades/actividades.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
 
 export const routes: Routes = [
     {
@@ -16,7 +18,8 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        title: 'Login'
+        title: 'Login',
+        canActivate: [AuthenticatedGuard]
     },
     {
         path: 'tarifas',
@@ -41,7 +44,8 @@ export const routes: Routes = [
     {
         path: 'users',
         component: UsersComponent,
-        title: 'Users Page'
+        title: 'Users Page',
+        canActivate: [AuthGuard]
     },
     {
         path: '**',
