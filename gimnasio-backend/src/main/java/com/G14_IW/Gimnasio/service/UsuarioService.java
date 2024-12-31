@@ -6,6 +6,7 @@ import com.G14_IW.Gimnasio.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.util.Map;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,7 +77,10 @@ public class UsuarioService {
         usuarioRepository.save(user);
     }
 
-    public ResponseEntity<String> login(Usuario user) {
+
+
+    // Código modificado
+    public ResponseEntity<Map<String, String>> login(Usuario user) {
         Optional<Usuario> existingUser = usuarioRepository.findByEmail(user.getEmail());
 
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
@@ -99,7 +103,8 @@ public class UsuarioService {
         // Generar un token
         String token = JwtUtil.generateToken(user.getEmail());
 
-        return ResponseEntity.ok(token);
+        // Devolver un JSON con el token
+        return ResponseEntity.ok(Map.of("token", token));
 
         /*
         Q: ¿Deberíamos permitir que un usuario inactivo inicie sesión?
@@ -108,6 +113,9 @@ public class UsuarioService {
             throw new RuntimeException("El usuario no está activo");
         }*/
     }
+
+
+
 
     public ResponseEntity<String> validarToken(String token) {
         // Quitar el prefijo "Bearer " del token
