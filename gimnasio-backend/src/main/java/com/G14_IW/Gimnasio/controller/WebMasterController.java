@@ -30,7 +30,7 @@ public class WebMasterController {
     }
 
     @DeleteMapping("{webMasterId}")
-    public void saveUpdate(@PathVariable("webMasterId") Long webMasterId) {
+    public void delete(@PathVariable("webMasterId") Long webMasterId) {
         webMasterService.deleteById(webMasterId);
     }
 

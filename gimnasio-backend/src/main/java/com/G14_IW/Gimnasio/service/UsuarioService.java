@@ -101,7 +101,7 @@ public class UsuarioService {
         }
 
         // Generar un token
-        String token = JwtUtil.generateToken(user.getEmail());
+        String token = JwtUtil.generateToken(user.getEmail(), getTipo(usuario.getId()));
 
         // Devolver un JSON con el token
         return ResponseEntity.ok(Map.of("token", token));

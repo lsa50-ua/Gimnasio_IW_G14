@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,21 @@ export class AuthService {
     }
 
     return false;
+  }
+
+  getUserType(): string | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token); // Decodifica el token
+        console.log(decoded.userType);
+        return decoded.userType || null; // Devuelve el userType si está presente
+      } catch (error) {
+        console.error('Error al decodificar el token:', error);
+        return null;
+      }
+    }
+    return null;
   }
 
   logout(): void {

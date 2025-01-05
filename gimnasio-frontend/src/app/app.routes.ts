@@ -8,6 +8,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { ActividadesComponent } from './components/actividades/actividades.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { WebMasterGuard } from './guards/webmaster.guard';
 
 export const routes: Routes = [
     {
@@ -45,7 +46,7 @@ export const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         title: 'Users Page',
-        canActivate: [AuthGuard]
+        canActivate: [WebMasterGuard]
     },
     {
         path: '**',
