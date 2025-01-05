@@ -1,13 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="">
-        <img src="logo.png" alt="Logo" width="120" height="80"> 
+        <img src="logo.png" alt="Logo" width="120" height="80">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto"> 
+        <ul class="navbar-nav ms-auto">
+        @if ( !isLoggedIn()) {
           <li class="nav-item">
             <a class="nav-link" href="/tarifas">Tarifas</a>
           </li>
@@ -20,11 +21,48 @@
           <li class="nav-item">
             <a class="nav-link" href="/contacto">Contacto</a>
           </li>
+        }
+        @else {
+        @if (userType() == 'WebMaster') {
+          <li class="nav-item">
+            <a class="nav-link" href="/users">Gestion Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gestion Actividades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Informe</a>
+          </li>
+        }
+        @if (userType() == 'Socio') {
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reservar Clases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Saldo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mis Reservas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contacto">Contacto</a>
+          </li>
+        }
+        @if (userType() == 'Monitor') {
+          <li class="nav-item">
+            <a class="nav-link" href="#">Horario</a>
+          </li>
+        }
+        }
         </ul>
-        <div class="d-flex"> 
+        <div class="d-flex">
+        @if ( !isLoggedIn()) {
           <a href="/login" class="btn btn-outline-primary me-2">Sign In</a>
           <a class="btn btn-primary">Quiero ser Socio</a>
-          <a (click)="logout()" class="btn btn-primary">Logout</a>
+        }
+        @if (isLoggedIn()) {
+          <a (click)="logout()" class="btn btn-outline-primary me-2">Logout</a>
+        }
         </div>
       </div>
     </div>

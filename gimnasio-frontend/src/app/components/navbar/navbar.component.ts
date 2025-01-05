@@ -13,4 +13,12 @@ export class NavbarComponent {
   logout(): void {
     this.authService.logout();
   }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  userType(): string | null {
+    return this.authService.getUserType();
+  }
 }
