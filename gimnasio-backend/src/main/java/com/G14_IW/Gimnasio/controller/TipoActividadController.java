@@ -34,8 +34,8 @@ public class TipoActividadController {
         tipoActividadService.saveOrUpdate(tipoActividad);
     }
 
-    @DeleteMapping("{tipoActividadId}")
-    public void saveUpdate(@PathVariable("tipoActividadId") Long tipoActividadId) {
+    @DeleteMapping("/{tipoActividadId}")
+    public void delete(@PathVariable("tipoActividadId") Long tipoActividadId) {
         tipoActividadService.deleteById(tipoActividadId);
     }
 }
