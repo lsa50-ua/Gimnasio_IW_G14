@@ -1,11 +1,14 @@
 export interface User {
-    userID:number;
-    name:string;
+    id:number;
     email:string;
-    telephone:string;
-    city:string;
-    country:string;
-    address:string;
-    zip_code:string;
-    activated:boolean;
+    password:string;
+    telefono:string;
+    ciudad:string;
+    codigoPostal:string;
+    direccion:string;
+    saldo:number;
+    tipo:string;
+    activo:boolean;
+    pagos: any[];
+    reservas: any[];
 }

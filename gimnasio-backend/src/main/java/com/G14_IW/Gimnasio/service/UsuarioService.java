@@ -77,8 +77,6 @@ public class UsuarioService {
         usuarioRepository.save(user);
     }
 
-
-
     // Código modificado
     public ResponseEntity<Map<String, String>> login(Usuario user) {
         Optional<Usuario> existingUser = usuarioRepository.findByEmail(user.getEmail());
@@ -100,22 +98,16 @@ public class UsuarioService {
             throw new RuntimeException("Contraseña incorrecta");
         }
 
+        if (!usuario.isActivo()) {
+            throw new RuntimeException("Usuario desactivado, contacte con un administrador.");
+        }
+
         // Generar un token
         String token = JwtUtil.generateToken(user.getEmail(), getTipo(usuario.getId()));
 
         // Devolver un JSON con el token
         return ResponseEntity.ok(Map.of("token", token));
-
-        /*
-        Q: ¿Deberíamos permitir que un usuario inactivo inicie sesión?
-         ¿O que inicien sesión como Usuario esperando la validación?
-        if (!usuario.isActivo()) {
-            throw new RuntimeException("El usuario no está activo");
-        }*/
     }
-
-
-
 
     public ResponseEntity<String> validarToken(String token) {
         // Quitar el prefijo "Bearer " del token
@@ -134,5 +126,4 @@ public class UsuarioService {
         String email = JwtUtil.getEmailFromToken(token);
         return ResponseEntity.ok("Token válido para el usuario: " + email);
     }
-
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,6 @@ export class AuthService {
       tap(response => {
         if (response.token) {
           this.setToken(response.token);
-          console.log(response.token);
         }
       })
     )
@@ -34,22 +34,38 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = this.getToken();
-    let status: number | null = null;
-
-    if (!token){
+    if (!token) return false;
+  
+    try {
+      const decoded: any = jwtDecode(token);
+      const currentTime = Math.floor(Date.now() / 1000); // Tiempo actual en segundos
+      return decoded.exp > currentTime; // Verifica si el token ha expirado
+    } catch (error) {
+      console.error('Token inválido:', error);
       return false;
     }
+  }
   
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8080/api/usuarios/validarToken', false);
-    xhr.setRequestHeader('token', `Bearer ${token}`);
-    xhr.send(null);
 
-    if (xhr.status === 200) {
-      return true;
+  getAuthenticatedUserId(users: User[]): number | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token); // Decodifica el token
+        if (decoded.sub !== null) {
+          for (let i = 0; i < users.length; i++){
+            if (users[i].email === decoded.sub){
+              return users[i].id;
+            }
+          }
+        }
+        return null;
+      } catch (error) {
+        console.error('Error al decodificar el token:', error);
+        return null;
+      }
     }
-
-    return false;
+    return null;
   }
 
   getUserType(): string | null {
@@ -57,7 +73,6 @@ export class AuthService {
     if (token) {
       try {
         const decoded: any = jwtDecode(token); // Decodifica el token
-        console.log(decoded.userType);
         return decoded.userType || null; // Devuelve el userType si está presente
       } catch (error) {
         console.error('Error al decodificar el token:', error);

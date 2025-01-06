@@ -15,7 +15,6 @@ export class ActividadesComponent {
 
   ngOnInit(): void {
     this.getAllActividades();
-    console.log(this.actividades);
   }
 
   getAllActividades() {
