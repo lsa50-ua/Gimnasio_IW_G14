@@ -20,6 +20,8 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
     @NonNull
+    private String nombre;
+    @NonNull
     private boolean activo;
 
     private String telefono;
@@ -59,6 +61,15 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public boolean isActivo() {
