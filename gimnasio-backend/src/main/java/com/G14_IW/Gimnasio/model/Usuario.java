@@ -14,8 +14,10 @@ public class Usuario {
     private Long id;
 
     @NonNull
+    @Column(unique = true, nullable = false)
     private String email;
     @NonNull
+    @Column(nullable = false)
     private String password;
     @NonNull
     private boolean activo;
