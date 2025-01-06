@@ -11,7 +11,6 @@ import java.util.List;
 @DiscriminatorValue("Socio")
 public class Socio extends Usuario {
     private double saldo;
-    private boolean activo;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
@@ -36,14 +35,6 @@ public class Socio extends Usuario {
 
     public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
     }
 
     public void addPago(Pago pago) {
