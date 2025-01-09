@@ -1,4 +1,4 @@
-export interface User {
+export interface Monitor {
     id:number;
     email:string;
     password:string;
@@ -9,4 +9,6 @@ export interface User {
     direccion:string;
     tipo:string;
     activo:boolean;
+    actividades: any[];
+    numActividades: number;
 }

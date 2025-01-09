@@ -1,4 +1,4 @@
-export interface User {
+export interface Socio {
     id:number;
     email:string;
     password:string;
@@ -7,6 +7,9 @@ export interface User {
     ciudad:string;
     codigoPostal:string;
     direccion:string;
+    saldo:number;
     tipo:string;
     activo:boolean;
+    pagos: any[];
+    reservas: any[];
 }
