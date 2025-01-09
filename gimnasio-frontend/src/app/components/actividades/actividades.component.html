@@ -39,7 +39,7 @@
                         <!-- Botones de editar y eliminar para WebMaster -->
                         @if (userType == 'WebMaster') {
                             <div class="d-flex gap-2">
-                                <a href="/editar/{{ actividad.id }}" class="btn btn-outline-primary btn-sm">Editar</a>
+                                <a href="/edit-tipo-actividad/{{ actividad.id }}" class="btn btn-outline-primary btn-sm">Editar</a>
                                 <a (click)="deleteActividad(actividad.id)" class="btn btn-outline-danger btn-sm">Eliminar</a>
                             </div>
                         }

@@ -18,7 +18,7 @@ export class ActividadService {
 
   // Get Actividad by id
   getById(id:number):Observable<Actividad> {
-    return this.http.get<Actividad>(`$(this.url)/$(id)`);
+    return this.http.get<Actividad>(`${this.url}/id/${id}`);
   }
 
   // Create or update Actividad

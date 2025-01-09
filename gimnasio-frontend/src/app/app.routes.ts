@@ -10,6 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { WebMasterGuard } from './guards/webmaster.guard';
 import { AddTipoActividadComponent } from './components/actividades/add-tipo-actividad/add-tipo-actividad.component';
+import { EditTipoActividadComponent } from './components/actividades/edit-tipo-actividad/edit-tipo-actividad.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +54,12 @@ export const routes: Routes = [
         path: 'add-tipo-actividad',
         component: AddTipoActividadComponent,
         title: 'Add Tipo Actividad',
+        canActivate: [WebMasterGuard]
+    },
+    {
+        path: 'edit-tipo-actividad/:id',
+        component: EditTipoActividadComponent,
+        title: 'Edit Tipo Actividad',
         canActivate: [WebMasterGuard]
     },
     {
