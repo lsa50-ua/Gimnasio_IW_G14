@@ -11,6 +11,9 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { WebMasterGuard } from './guards/webmaster.guard';
 import { AddTipoActividadComponent } from './components/actividades/add-tipo-actividad/add-tipo-actividad.component';
 import { EditTipoActividadComponent } from './components/actividades/edit-tipo-actividad/edit-tipo-actividad.component';
+import { EditWebmasterComponent } from './components/users/edit/edit-webmaster/edit-webmaster.component';
+import { EditSocioComponent } from './components/users/edit/edit-socio/edit-socio.component';
+import { EditMonitorComponent } from './components/users/edit/edit-monitor/edit-monitor.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +51,24 @@ export const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         title: 'Users Page',
+        canActivate: [WebMasterGuard]
+    },
+    {
+        path: 'edit-WebMaster/:id',
+        component: EditWebmasterComponent,
+        title: 'Edit Webmaster',
+        canActivate: [WebMasterGuard]
+    },
+    {
+        path: 'edit-Socio/:id',
+        component: EditSocioComponent,
+        title: 'Edit Socio',
+        canActivate: [WebMasterGuard]
+    },
+    {
+        path: 'edit-Monitor/:id',
+        component: EditMonitorComponent,
+        title: 'Edit Monitor',
         canActivate: [WebMasterGuard]
     },
     {

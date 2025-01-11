@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { ActividadService } from '../../../services/actividad.service';
 import { Actividad } from '../../../models/actividad';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-tipo-actividad',
