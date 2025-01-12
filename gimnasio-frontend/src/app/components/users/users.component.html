@@ -24,7 +24,8 @@
         <table class="table table-hover table-striped">
             <thead class="table-light">
                 <tr>
-                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">ID</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Email</th>
                     <th scope="col">Rol</th>
                     <th scope="col" class="text-center">Activado</th>
@@ -35,6 +36,12 @@
                 @for (user of users; track user.id) {
                     <tr>
                         <th scope="row" class="text-center">{{ user.id }}</th>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-person-circle"></i>
+                                {{ user.nombre }}
+                            </div>
+                        </td>
                         <td>
                             <div class="d-flex align-items-center gap-2">
                                 <i class="bi bi-person-circle"></i>

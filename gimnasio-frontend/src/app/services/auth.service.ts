@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../models/user';
+import { Socio } from '../models/socio';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,48 @@ export class AuthService {
           for (let i = 0; i < users.length; i++){
             if (users[i].email === decoded.sub){
               return users[i].id;
+            }
+          }
+        }
+        return null;
+      } catch (error) {
+        console.error('Error al decodificar el token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
+  getAuthenticatedUser(users: User[]): User | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token); // Decodifica el token
+        if (decoded.sub !== null) {
+          for (let i = 0; i < users.length; i++){
+            if (users[i].email === decoded.sub){
+              return users[i];
+            }
+          }
+        }
+        return null;
+      } catch (error) {
+        console.error('Error al decodificar el token:', error);
+        return null;
+      }
+    }
+    return null;
+  }
+
+  getAuthenticatedSocio(socios: Socio[]): Socio | null {
+    const token = this.getToken();
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token); // Decodifica el token
+        if (decoded.sub !== null) {
+          for (let i = 0; i < socios.length; i++){
+            if (socios[i].email === decoded.sub){
+              return socios[i];
             }
           }
         }

@@ -15,6 +15,7 @@ import { EditWebmasterComponent } from './components/users/edit-user/edit-webmas
 import { EditSocioComponent } from './components/users/edit-user/edit-socio/edit-socio.component';
 import { EditMonitorComponent } from './components/users/edit-user/edit-monitor/edit-monitor.component';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
+import { SaldoComponent } from './components/saldo/saldo.component';
 
 export const routes: Routes = [
     {
@@ -89,6 +90,12 @@ export const routes: Routes = [
         component: EditTipoActividadComponent,
         title: 'Edit Tipo Actividad',
         canActivate: [WebMasterGuard]
+    },
+    {
+        path: 'saldo',
+        component: SaldoComponent,
+        title: 'Ver Saldo',
+        canActivate: [AuthGuard]
     },
     {
         path: '**',
