@@ -57,4 +57,20 @@ export class UsersComponent {
     }
   }
 
+  deleteUser(id: number): void {
+    this.userService.delete(id).subscribe({
+      next: () => {
+        console.log(`User with ID ${id} deleted.`);
+
+        // Reload data
+        this.getAllUsers();
+      },
+      error: (error) => {
+        console.error('Failed to delete user:', error);
+        // Show error message to user
+        alert('Failed to delete user. Please try again.');
+      },
+    });
+  }
+
 }

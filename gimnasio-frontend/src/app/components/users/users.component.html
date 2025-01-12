@@ -13,9 +13,9 @@
     <div class="row mb-4">
         <div class="col-md-12 d-flex justify-content-between align-items-center">
             <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Lista de Usuarios</h2>
-            <button type="button" class="btn btn-success">
+            <a href="/add-user" class="btn btn-success">
                 Añadir
-            </button>
+            </a>
         </div>
     </div>
 
@@ -63,9 +63,9 @@
                                 <a href="/edit-{{ user.tipo }}/{{ user.id }}" class="btn btn-warning btn-sm">
                                     Editar
                                 </a>
-                                <button type="button" class="btn btn-danger btn-sm">
+                                <a (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">
                                     Eliminar
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>

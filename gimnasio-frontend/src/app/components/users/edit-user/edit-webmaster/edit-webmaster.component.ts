@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class EditWebmasterComponent {
   editWebmasterForm: FormGroup;
+  errorMessage = '';
 
   constructor(private fb: FormBuilder, private webmasterService: WebmasterService, private router: Router) {
     const id = Number(this.router.url.split('/').pop());
@@ -24,7 +25,7 @@ export class EditWebmasterComponent {
       ciudad: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
       codigoPostal: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
-      
+      activo:[]
     })
 
     this.webmasterService.getById(id).subscribe((webmaster) => {
@@ -32,5 +33,24 @@ export class EditWebmasterComponent {
     });
   }
   editWebmaster() {
+    if (this.editWebmasterForm.valid) {
+      this.webmasterService.saveUpdate(this.editWebmasterForm.value).subscribe({
+        next: (response) => {
+          console.log("Webmaster actualizado correctamente");
+          this.router.navigate(['/users']);
+        },
+        error: (error) => {
+          if (error.error && error.error.message) {
+            console.error(error.error.message);
+          } else {
+            console.error('An unexpected error occurred. Please try again later.');
+          }
+        }
+      });
+    }
+    else {
+      console.log('Bad Formated inputs');
+      this.errorMessage = "Complete los campos adecuadamente antes de continuar.";
+    }
   }
 }

@@ -11,9 +11,10 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { WebMasterGuard } from './guards/webmaster.guard';
 import { AddTipoActividadComponent } from './components/actividades/add-tipo-actividad/add-tipo-actividad.component';
 import { EditTipoActividadComponent } from './components/actividades/edit-tipo-actividad/edit-tipo-actividad.component';
-import { EditWebmasterComponent } from './components/users/edit/edit-webmaster/edit-webmaster.component';
-import { EditSocioComponent } from './components/users/edit/edit-socio/edit-socio.component';
-import { EditMonitorComponent } from './components/users/edit/edit-monitor/edit-monitor.component';
+import { EditWebmasterComponent } from './components/users/edit-user/edit-webmaster/edit-webmaster.component';
+import { EditSocioComponent } from './components/users/edit-user/edit-socio/edit-socio.component';
+import { EditMonitorComponent } from './components/users/edit-user/edit-monitor/edit-monitor.component';
+import { AddUserComponent } from './components/users/add-user/add-user.component';
 
 export const routes: Routes = [
     {
@@ -51,6 +52,12 @@ export const routes: Routes = [
         path: 'users',
         component: UsersComponent,
         title: 'Users Page',
+        canActivate: [WebMasterGuard]
+    },
+    {
+        path: 'add-user',
+        component: AddUserComponent,
+        title: 'Add User',
         canActivate: [WebMasterGuard]
     },
     {

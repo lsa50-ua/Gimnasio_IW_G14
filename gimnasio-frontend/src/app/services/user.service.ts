@@ -18,7 +18,7 @@ export class UserService {
 
   // Get user by id
   getById(id:number):Observable<User> {
-    return this.http.get<User>('$(this.url)/$(id)');
+    return this.http.get<User>(`${this.url}/${id}`);
   }
 
   // Create or update user
@@ -28,6 +28,6 @@ export class UserService {
 
   // Delete user
   delete(id:number) {
-    return this.http.delete('$(this.url)/$(id)');
+    return this.http.delete(`${this.url}/${id}`);
   }
 }

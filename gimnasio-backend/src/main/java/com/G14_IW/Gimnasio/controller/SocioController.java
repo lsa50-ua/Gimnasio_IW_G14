@@ -31,17 +31,17 @@ public class SocioController {
         socioService.saveOrUpdate(socio);
     }
 
-    @DeleteMapping("{socioId}")
+    @DeleteMapping("/{socioId}")
     public void saveUpdate(@PathVariable("socioId") Long socioId) {
         socioService.deleteById(socioId);
     }
 
-    @PutMapping("{socioId}/recargar/{cuantia}")
+    @PutMapping("/{socioId}/recargar/{cuantia}")
     public void recargarSaldo(@PathVariable("socioId") Long socioId, @PathVariable("cuantia") float cuantia) {
         socioService.recargarSaldo(socioId, cuantia);
     }
 
-    @PutMapping("{socioId}/reservar/{fecha}/{hora}/{actividadId}")
+    @PutMapping("/{socioId}/reservar/{fecha}/{hora}/{actividadId}")
     public void reservarActividad(@PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha,
                                   @PathVariable("hora") String hora,
                                   @PathVariable("socioId") Long socioId,
@@ -49,7 +49,7 @@ public class SocioController {
         socioService.reservarActividad(fecha, hora, socioId, actividadId);
     }
 
-    @DeleteMapping("{socioId}/reservar/{reservaId}")
+    @DeleteMapping("/{socioId}/reservar/{reservaId}")
     public void cancelarReserva(@PathVariable("socioId") Long socioId, @PathVariable("reservaId") Long reservaId) {
         socioService.cancelarReserva(socioId, reservaId);
     }
