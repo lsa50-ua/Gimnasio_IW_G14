@@ -16,6 +16,7 @@ import { EditSocioComponent } from './components/users/edit-user/edit-socio/edit
 import { EditMonitorComponent } from './components/users/edit-user/edit-monitor/edit-monitor.component';
 import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { SaldoComponent } from './components/saldo/saldo.component';
+import { RechargeComponent } from './components/saldo/recharge/recharge.component';
 
 export const routes: Routes = [
     {
@@ -95,6 +96,12 @@ export const routes: Routes = [
         path: 'saldo',
         component: SaldoComponent,
         title: 'Ver Saldo',
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'saldo/recargar/:cantidad',
+        component: RechargeComponent,
+        title: 'Recargar Saldo',
         canActivate: [AuthGuard]
     },
     {

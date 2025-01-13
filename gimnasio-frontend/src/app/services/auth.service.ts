@@ -97,6 +97,7 @@ export class AuthService {
         const decoded: any = jwtDecode(token); // Decodifica el token
         if (decoded.sub !== null) {
           for (let i = 0; i < socios.length; i++){
+            console.log(socios[i]);
             if (socios[i].email === decoded.sub){
               return socios[i];
             }

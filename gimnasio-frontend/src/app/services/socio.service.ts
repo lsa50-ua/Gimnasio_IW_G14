@@ -12,8 +12,8 @@ export class SocioService {
   constructor(private http: HttpClient) { }
 
   // Get all users
-  getAll():Observable<[Socio]> {
-    return this.http.get<[Socio]>(this.url);
+  getAll():Observable<Socio[]> {
+    return this.http.get<Socio[]>(this.url);
   }
 
   // Get user by id

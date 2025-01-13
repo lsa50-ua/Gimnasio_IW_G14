@@ -1,28 +1,52 @@
-<div class="container-fluid">
-    <!-- Imagen del banner -->
-    <div class="row">
-      <div class="col-12">
-        <div class="banner-container">
-          <img src="leaderboard.png" alt="Banner" class="img-fluid banner-image">
+<div class="container mt-5">
+    <!-- Panel de saldo disponible -->
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="saldo-panel text-center shadow rounded p-4 mb-4">
+          <h2 class="saldo-header text-muted mb-3">Saldo Disponible</h2>
+          <div class="saldo-valor">
+            <span class="saldo-amount display-4">{{ socio?.saldo || 0 }} €</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   
-  <div class="container mt-5">
-    <!-- Panel de saldo -->
-    <div class="row justify-content-center mt-4">
+    <!-- Formulario para recargar saldo -->
+    <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4">
-        <div class="saldo-panel text-center shadow rounded p-4">
-          <!-- Saldo disponible -->
-          <h2 class="saldo-header text-muted mb-3">Saldo Disponible</h2>
-          <div class="saldo-valor">
-            <span class="saldo-amount">@if (socio != null) { socio.saldo } @else { 0 } €</span>
-          </div>
-          <!-- Botón para recargar -->
-          <a href="/recarga" class="btn btn-dark w-100 mt-4 btn-recargar">
-            Recargar Saldo
-          </a>
+        <div class="recarga-panel text-center shadow rounded p-4">
+          <h3 class="recarga-header text-muted mb-3">Recargar Saldo</h3>
+          <form [formGroup]="tpvForm" (ngSubmit)="recargarSaldo()" class="mt-4">
+            <div class="mb-3">
+              <label for="cantidad" class="form-label">Cantidad a recargar (€)</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cantidad"
+                name="cantidad"
+                formControlName="cantidad"
+                placeholder="Introduzca cantidad"
+                required
+              />
+              @if (tpvForm.get('cantidad')?.invalid && tpvForm.get('cantidad')?.touched) {
+                <div class="error-message">
+                  @if (tpvForm.get('cantidad')?.errors?.['required']) {
+                    <small>La cantidad es obligatoria.</small>
+                  }
+                  @if (tpvForm.get('cantidad')?.errors?.['min']) {
+                    <small>La cantidad debe ser mayor a 0.</small>
+                  }
+                </div>
+              }
+            </div>
+            <button type="submit" class="btn btn-dark w-100" [disabled]="loading">Pagar</button>
+          </form>
+          @if (loading) {
+            <div class="mt-3">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Procesando, por favor espere...
+            </div>
+          }
         </div>
       </div>
     </div>
