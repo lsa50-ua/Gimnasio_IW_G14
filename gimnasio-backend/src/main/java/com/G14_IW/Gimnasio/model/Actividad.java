@@ -20,8 +20,6 @@ public class Actividad {
     private String horas;
     private String fechaInicio;
     private String fechaFin;
-    private int capacidad;
-    private float precio;
 
     @ManyToOne
     @JoinColumn(name = "tipo_actividad_id")
@@ -40,8 +38,6 @@ public class Actividad {
         this.horas = horas;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.capacidad = capacidad;
-        this.precio = precio;
         this.tipoActividad = tipoActividad;
         this.monitor = monitor;
     }
@@ -96,22 +92,6 @@ public class Actividad {
 
     public void setFechaFin(String fechaFinActividad) {
         this.fechaFin = fechaFinActividad;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
     }
 
     public TipoActividad getTipoActividad() {
