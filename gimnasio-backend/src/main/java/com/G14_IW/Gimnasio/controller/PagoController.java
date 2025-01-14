@@ -29,7 +29,7 @@ public class PagoController {
         pagoService.saveOrUpdate(pago);
     }
 
-    @DeleteMapping("{pagoId}")
+    @DeleteMapping("/{pagoId}")
     public void saveUpdate(@PathVariable("pagoId") Long pagoId){
         pagoService.deleteById(pagoId);
     }

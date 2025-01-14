@@ -1,5 +1,7 @@
 package com.G14_IW.Gimnasio.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +16,7 @@ public class Socio extends Usuario {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
+    @JsonManagedReference
     private List<Pago> pagos = new ArrayList<>();
 
     @OneToMany

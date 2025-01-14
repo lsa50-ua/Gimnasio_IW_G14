@@ -3,6 +3,7 @@ import { SocioService } from '../../../services/socio.service';
 import { AuthService } from '../../../services/auth.service';
 import { Socio } from '../../../models/socio';
 import { Router } from '@angular/router';
+import { PagoService } from '../../../services/pago.service';
 
 @Component({
   selector: 'app-recharge',
@@ -14,7 +15,7 @@ export class RechargeComponent {
   socios: Socio[] = [];
   socio: Socio | null = null;
 
-  constructor(private socioService: SocioService, private authService: AuthService, private router: Router) {
+  constructor(private socioService: SocioService, private pagoService: PagoService , private authService: AuthService, private router: Router) {
     const cantidad = Number(this.router.url.split('/').pop());
 
     socioService.getAll().subscribe(socios => {
@@ -24,6 +25,15 @@ export class RechargeComponent {
         this.socio.saldo += cantidad;
         socioService.saveUpdate(this.socio).subscribe({ next: (response) => {
           console.log("Socio actualizado correctamente");
+          if (this.socio != null) {
+            pagoService.saveUpdate({coste: cantidad, usuario: this.socio}).subscribe({ next: (response) => {
+              console.log("Pago registrado correctamente");
+            }
+            , error: (error) => {
+              console.error('Error al realizar el pago:', error);
+          }
+          });
+          }
           this.router.navigate(['/saldo']);
         }});
       }

@@ -1,5 +1,6 @@
 package com.G14_IW.Gimnasio.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,11 +13,12 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date fecha;
+    private Date fecha = new Date();
     private double coste;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonBackReference
     private Usuario usuario;
 
     // Getters y Setters
