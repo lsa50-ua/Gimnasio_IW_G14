@@ -39,10 +39,10 @@
             <a class="nav-link" href="/actividades">Reservar Clases</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/saldo">Saldo</a>
+            <a class="nav-link" href="#">Mis Reservas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Mis Reservas</a>
+            <a class="nav-link" href="/saldo">Saldo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contacto">Contacto</a>
@@ -58,7 +58,7 @@
         <div class="d-flex">
         @if ( !isLoggedIn()) {
           <a href="/login" class="btn btn-outline-primary me-2">Sign In</a>
-          <a class="btn btn-primary">Quiero ser Socio</a>
+          <a href="/contacto" class="btn btn-primary">Quiero ser Socio</a>
         }
         @if (isLoggedIn()) {
           <a (click)="logout()" class="btn btn-outline-primary me-2">Logout</a>

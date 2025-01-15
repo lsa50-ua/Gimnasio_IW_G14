@@ -17,6 +17,7 @@ import { EditMonitorComponent } from './components/users/edit-user/edit-monitor/
 import { AddUserComponent } from './components/users/add-user/add-user.component';
 import { SaldoComponent } from './components/saldo/saldo.component';
 import { RechargeComponent } from './components/saldo/recharge/recharge.component';
+import { ClasesComponent } from './components/clases/clases.component';
 
 export const routes: Routes = [
     {
@@ -102,6 +103,12 @@ export const routes: Routes = [
         path: 'saldo/recargar/:cantidad',
         component: RechargeComponent,
         title: 'Recargar Saldo',
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'ver-clases/:id',
+        component: ClasesComponent,
+        title: 'Clases',
         canActivate: [AuthGuard]
     },
     {

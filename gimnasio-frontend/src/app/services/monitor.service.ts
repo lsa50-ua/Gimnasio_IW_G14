@@ -12,8 +12,8 @@ export class MonitorService {
   constructor(private http: HttpClient) { }
 
   // Get all users
-  getAll():Observable<[Monitor]> {
-    return this.http.get<[Monitor]>(this.url);
+  getAll():Observable<Monitor[]> {
+    return this.http.get<Monitor[]>(this.url);
   }
 
   // Get user by id

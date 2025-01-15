@@ -1,0 +1,35 @@
+<div class="cal-container">
+  <h2 style="text-align: center;" class="cal-title">Calendario de eventos</h2>
+  <br>
+  <!-- Encabezado con botones de navegación -->
+  <div class="cal-header">
+    <button (click)="previousMonth()" class="nav-button">Anterior</button>
+    <h3 class="cal-title">{{ viewDate | date: 'MMMM yyyy' }}</h3>
+    <button (click)="nextMonth()" class="nav-button">Siguiente</button>
+  </div>
+
+  <!-- Vista del calendario -->
+  <mwl-calendar-month-view
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="onDayClicked($event)"
+    [activeDayIsOpen]="false"
+    class="calendar-view">
+  </mwl-calendar-month-view>
+
+  <!-- Lista de eventos del día seleccionado -->
+  <div class="event-list">
+    <h4>Eventos del día seleccionado:</h4>
+    <ul *ngIf="selectedDayEvents.length > 0; else noEvents" class="event-items">
+      <li *ngFor="let event of selectedDayEvents" class="event-item">
+        <strong class="event-title">{{ event.title }}</strong>
+        <span class="event-time">
+          {{ event.start | date: 'shortTime' }} - {{ event.end | date: 'shortTime' }}
+        </span>
+      </li>
+    </ul>
+    <ng-template #noEvents>
+      <p class="no-events">No hay eventos para este día.</p>
+    </ng-template>
+  </div>
+</div>

@@ -42,10 +42,9 @@
     <div class="row mt-4 justify-content-center">
     @for (entrenador of entrenadores; track entrenador.nombre) {
     <div class="card shadow-sm border-light">
-        <img [src]="entrenador.foto" class="card-img-top" alt="{{ entrenador.nombre }}">
+        <img src="https://st5.depositphotos.com/17433220/73304/i/450/depositphotos_733041150-stock-photo-silhouette-adult-man-male-avatar.jpg" class="card-img-top">
         <div class="card-body text-center">
             <h5 class="card-title">{{ entrenador.nombre }}</h5>
-            <p class="card-text">{{ entrenador.especialidad }}</p>
         </div>
     </div>
     }
