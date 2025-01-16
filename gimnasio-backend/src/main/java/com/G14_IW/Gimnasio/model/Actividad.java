@@ -1,6 +1,8 @@
 package com.G14_IW.Gimnasio.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -31,11 +33,11 @@ public class Actividad {
 
     @ManyToOne
     @JoinColumn(name = "monitor_id")
-    @JsonManagedReference
+    @JsonIgnoreProperties("actividades")
     private Monitor monitor;
 
     @OneToMany(mappedBy = "actividad")
-    @JsonBackReference
+    @JsonManagedReference
     private List<Reserva> reservas;
 
     public Actividad(String nombre, String diaSemana, String horas, String fechaInicio, String fechaFin,

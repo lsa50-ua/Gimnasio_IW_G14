@@ -1,5 +1,6 @@
 package com.G14_IW.Gimnasio.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,11 +20,12 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "actividad_id", nullable = false)
-    @JsonManagedReference
+    @JsonBackReference
     private Actividad actividad;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonIgnoreProperties("reservas")
     private Socio socio;
 
     // Constructores
