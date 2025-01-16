@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Mapea el puerto de la aplicación
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/gimnasiodb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db # Asegura que la base de datos esté disponible antes de iniciar la aplicación
+
+  db:
+    image: mysql:8.0 # Imagen de MySQL 8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gimnasiodb
+    ports:
+      - "3306:3306" # Mapea el puerto de la base de datos para acceder desde tu máquina
+    volumes:
+      - db_data:/var/lib/mysql # Persistencia de datos
+
+volumes:
+  db_data:

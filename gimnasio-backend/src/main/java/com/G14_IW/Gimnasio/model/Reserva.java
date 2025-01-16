@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -15,8 +17,8 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date fechaReserva;
-    private String hora;
+    private LocalDate fechaReserva;
+    private LocalTime hora;
 
     @ManyToOne
     @JoinColumn(name = "actividad_id", nullable = false)
@@ -32,7 +34,7 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(Date fechaReserva, String hora, Actividad actividad, Socio socio) {
+    public Reserva(LocalDate fechaReserva, LocalTime hora, Actividad actividad, Socio socio) {
         this.fechaReserva = fechaReserva;
         this.hora = hora;
         this.actividad = actividad;
@@ -48,19 +50,19 @@ public class Reserva {
         this.id = id;
     }
 
-    public Date getFechaReserva() {
+    public LocalDate getFechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(Date fechaReserva) {
+    public void setFechaReserva(LocalDate fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
 
-    public String getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

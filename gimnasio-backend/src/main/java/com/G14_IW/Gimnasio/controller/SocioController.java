@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -42,8 +44,8 @@ public class SocioController {
     }
 
     @PutMapping("/{socioId}/reservar/{fecha}/{hora}/{actividadId}")
-    public void reservarActividad(@PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha,
-                                  @PathVariable("hora") String hora,
+    public void reservarActividad(@PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha,
+                                  @PathVariable("hora") LocalTime hora,
                                   @PathVariable("socioId") Long socioId,
                                   @PathVariable("actividadId") Long actividadId) {
         socioService.reservarActividad(fecha, hora, socioId, actividadId);

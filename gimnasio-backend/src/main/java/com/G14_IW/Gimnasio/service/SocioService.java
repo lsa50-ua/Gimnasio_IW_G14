@@ -9,6 +9,8 @@ import com.G14_IW.Gimnasio.repository.ActividadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class SocioService {
         socioRepository.save(socio);
     }
 
-    public void reservarActividad(Date fecha, String hora, Long socioId, Long actividadId) {
+    public void reservarActividad(LocalDate fecha, LocalTime hora, Long socioId, Long actividadId) {
         Socio socio = socioRepository.findById(socioId).orElseThrow(() -> new RuntimeException("Socio no encontrado"));
         Actividad actividad = actividadRepository.findById(actividadId).orElseThrow(() -> new RuntimeException("Actividad no encontrada"));
 
