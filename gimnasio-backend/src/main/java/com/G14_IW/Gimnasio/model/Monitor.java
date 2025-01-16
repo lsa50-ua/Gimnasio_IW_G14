@@ -1,5 +1,6 @@
 package com.G14_IW.Gimnasio.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class Monitor extends Usuario {
 
     @OneToMany(mappedBy = "monitor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Actividad> actividades = new ArrayList<>();
 
     public Monitor() {

@@ -19,19 +19,14 @@ public class TipoActividad {
 
     private String imagen;
 
-    private int capacidad;
-    private float precio;
-
     public TipoActividad(String tipo) {
         this.tipo = tipo;
     }
 
-    public TipoActividad(String tipo, String descripcion, String imagen, int capacidad, float precio) {
+    public TipoActividad(String tipo, String descripcion, String imagen) {
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.imagen = imagen;
-        this.capacidad = capacidad;
-        this.precio = precio;
     }
 
     public TipoActividad() {
@@ -67,22 +62,6 @@ public class TipoActividad {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
-    }
-
-    public int getCapacidad() {
-        return capacidad;
-    }
-
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
-    }
-
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
     }
 
 }

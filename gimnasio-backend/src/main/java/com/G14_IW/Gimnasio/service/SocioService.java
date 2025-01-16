@@ -48,14 +48,14 @@ public class SocioService {
         Socio socio = socioRepository.findById(socioId).orElseThrow(() -> new RuntimeException("Socio no encontrado"));
         Actividad actividad = actividadRepository.findById(actividadId).orElseThrow(() -> new RuntimeException("Actividad no encontrada"));
 
-        if (socio.getSaldo() < actividad.getTipoActividad().getPrecio()) {
+        if (socio.getSaldo() < actividad.getPrecio()) {
             throw new RuntimeException("Saldo insuficiente");
         }
 
         Reserva reserva = new Reserva(fecha, hora, actividad, socio);
 
         socio.getReservas().add(reserva);
-        socio.setSaldo(socio.getSaldo() - actividad.getTipoActividad().getPrecio());
+        socio.setSaldo(socio.getSaldo() - actividad.getPrecio());
         reservaRepository.save(reserva);
         socioRepository.save(socio);
     }
@@ -69,7 +69,7 @@ public class SocioService {
         }
 
         socio.getReservas().remove(reserva);
-        socio.setSaldo(socio.getSaldo() + reserva.getActividad().getTipoActividad().getPrecio());
+        socio.setSaldo(socio.getSaldo() + reserva.getActividad().getPrecio());
         reservaRepository.delete(reserva);
         socioRepository.save(socio);
     }
