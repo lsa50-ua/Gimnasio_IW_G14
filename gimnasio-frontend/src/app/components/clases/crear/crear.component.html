@@ -1,0 +1,119 @@
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">
+          Crear Clase
+        </h2>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-container">
+    <form [formGroup]="addClaseForm" (ngSubmit)="crearClase()">
+      <!-- Encabezado -->
+      <h3 class="form-heading">Rellene los campos para continuar</h3>
+      
+      <!-- Nombre Field -->
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input 
+          id="nombre" 
+          formControlName="nombre" 
+          type="text" 
+          placeholder="Ingrese el nombre de la clase" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Día de la Semana Field -->
+      <div class="form-group">
+        <label for="diaSemana">Día de la Semana:</label>
+        <input 
+          id="diaSemana" 
+          formControlName="diaSemana" 
+          type="text" 
+          placeholder="Ejemplo: Lunes" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Horas Field -->
+      <div class="form-group">
+        <label for="horas">Horas:</label>
+        <input 
+          id="horas" 
+          formControlName="horas" 
+          type="text" 
+          placeholder="Ingrese el horario (ej: 10:00 - 12:00)" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Fecha de Inicio Field -->
+      <div class="form-group">
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input 
+          id="fechaInicio" 
+          formControlName="fechaInicio" 
+          type="date" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Fecha de Fin Field -->
+      <div class="form-group">
+        <label for="fechaFin">Fecha de Fin:</label>
+        <input 
+          id="fechaFin" 
+          formControlName="fechaFin" 
+          type="date" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Capacidad Field -->
+      <div class="form-group">
+        <label for="capacidad">Capacidad:</label>
+        <input 
+          id="capacidad" 
+          formControlName="capacidad" 
+          type="number" 
+          placeholder="Ingrese la capacidad máxima" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Precio Field -->
+      <div class="form-group">
+        <label for="precio">Precio:</label>
+        <input 
+          id="precio" 
+          formControlName="precio" 
+          type="number" 
+          step="0.01" 
+          placeholder="Ingrese el precio en euros" 
+          class="form-control" 
+          required>
+      </div>
+      
+      <!-- Monitor Field -->
+      <div class="form-group">
+        <label for="monitor">Monitor:</label>
+        <select 
+          id="monitor" 
+          formControlName="monitor" 
+          class="form-control" 
+          required>
+          <!-- Loop para monitores -->
+          @for (monitor of monitores; track monitor.id) {
+            <option [value]="monitor.id">{{ monitor.nombre }}</option>
+          }
+        </select>
+      </div>
+      
+      <!-- Botón para enviar el formulario -->
+      <button type="submit" class="btn btn-primary">Crear Clase</button>
+    </form>
+  </div>
+  
