@@ -1,6 +1,7 @@
 package com.G14_IW.Gimnasio.controller;
 
 import com.G14_IW.Gimnasio.model.Socio;
+import com.G14_IW.Gimnasio.service.ReservaManagerService;
 import com.G14_IW.Gimnasio.service.SocioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ import java.util.List;
 public class SocioController {
     @Autowired
     private SocioService socioService;
+
+    @Autowired
+    private ReservaManagerService reservaManagerService;
 
     @GetMapping
     public List<Socio> getAll(){
@@ -53,6 +57,6 @@ public class SocioController {
 
     @DeleteMapping("/{socioId}/reservar/{reservaId}")
     public void cancelarReserva(@PathVariable("socioId") Long socioId, @PathVariable("reservaId") Long reservaId) {
-        socioService.cancelarReserva(socioId, reservaId);
+        reservaManagerService.cancelarReserva(socioId, reservaId);
     }
 }

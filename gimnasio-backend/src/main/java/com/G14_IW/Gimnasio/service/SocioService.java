@@ -21,6 +21,7 @@ public class SocioService {
 
     @Autowired
     private ActividadRepository actividadRepository;
+
     @Autowired
     private ReservaRepository reservaRepository;
 
@@ -59,20 +60,6 @@ public class SocioService {
         socio.getReservas().add(reserva);
         socio.setSaldo(socio.getSaldo() - actividad.getPrecio());
         reservaRepository.save(reserva);
-        socioRepository.save(socio);
-    }
-
-    public void cancelarReserva(Long socioId, Long reservaId) {
-        Socio socio = socioRepository.findById(socioId).orElseThrow(() -> new RuntimeException("Socio no encontrado"));
-        Reserva reserva = reservaRepository.findById(reservaId).orElseThrow(() -> new RuntimeException("Reserva no encontrada"));
-
-        if (!socio.getReservas().contains(reserva)) {
-            throw new RuntimeException("La reserva no pertenece al socio");
-        }
-
-        socio.getReservas().remove(reserva);
-        socio.setSaldo(socio.getSaldo() + reserva.getActividad().getPrecio());
-        reservaRepository.delete(reserva);
         socioRepository.save(socio);
     }
 }
