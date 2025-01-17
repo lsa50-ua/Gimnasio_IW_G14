@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Editar Tipo de Actividad</h2>
+      </div>
+    </div>
+</div>
+<div class="form-container">
+    <form [formGroup] = "editActivityForm" (ngSubmit)="editActivity()">
+        <!-- Encabezado -->
+        <h3 class="form-heading ">Modifique o mantenga los campos para continuar</h3>
+        
+        <!-- Tipo Field -->
+        <div class="form-group">
+            <label for="tipo">Tipo:</label>
+            <input id="tipo" formControlName="tipo" type="text" placeholder="Enter the name of the activity" class="form-control" required>
+        </div>
+        <!-- Descripción Field -->
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" formControlName="descripcion" rows="3" class="form-control" placeholder="Escriba la descripción aquí" required></textarea>
+        </div>
+        <!-- Imagen URL Field -->
+        <div class="form-group">
+            <label for="imagen">URL de la Imagen:</label>
+            <input id="imagen" name="imagen" formControlName="imagen" type="url" placeholder="Ingrese la URL de la imagen" class="form-control" required>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Modificar</button>
+    </form>
+</div>

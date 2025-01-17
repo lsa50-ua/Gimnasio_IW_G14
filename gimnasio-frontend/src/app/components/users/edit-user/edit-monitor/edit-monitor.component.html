@@ -1,0 +1,123 @@
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Editar monitor</h2>
+      </div>
+    </div>
+</div>
+<div class="form-container">
+    <form [formGroup] = "editMonitorForm" (ngSubmit)="editMonitor()">
+        <!-- Encabezado -->
+        <h3 class="form-heading ">Modifique o mantenga los campos para continuar</h3>
+        
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" type="email" placeholder="Modify the monitor email" class="form-control" required>
+            @if (editMonitorForm.get('email')?.invalid && editMonitorForm.get('email')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('email')?.errors?.['required']) {
+                    <small>Email is required.</small>
+                  }
+                  @if (editMonitorForm.get('email')?.errors?.['email']) {
+                    <small>Enter a valid email.</small>
+                  }
+                </div>
+              }
+        </div>
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" formControlName="password" type="password" placeholder="Modify the monitor password" class="form-control" required>
+            @if (editMonitorForm.get('password')?.invalid && editMonitorForm.get('password')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('password')?.errors?.['required']) {
+                    <small>Password is required.</small>
+                  }
+                  @if (editMonitorForm.get('password')?.errors?.['minlength']) {
+                    <small>Minimum 6 characters required.</small>
+                  }
+                  @if (editMonitorForm.get('password')?.errors?.['pattern']) {
+                    <small>Password must contain at least one lowercase letter, one capital letter, one simbol and one number.</small>
+                  }
+                </div>
+              }
+        </div>
+        <!-- Nombre Field -->
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" formControlName="nombre" type="text" placeholder="Mofify the monitor name" class="form-control" required>
+            @if (editMonitorForm.get('nombre')?.invalid && editMonitorForm.get('nombre')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('nombre')?.errors?.['required']) {
+                    <small>Nombre is required.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Telefono Field -->
+        <div class="form-group">
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" formControlName="telefono" type="text" placeholder="Mofify the monitor telephone" class="form-control" required>
+            @if (editMonitorForm.get('telefono')?.invalid && editMonitorForm.get('telefono')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('telefono')?.errors?.['required']) {
+                    <small>Telefono is required.</small>
+                  }
+                  @if (editMonitorForm.get('telefono')?.errors?.['pattern']) {
+                    <small>Telefono must contain 9 numbers.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Ciudad Field -->
+        <div class="form-group">
+            <label for="ciudad">Ciudad:</label>
+            <input id="ciudad" formControlName="ciudad" type="text" placeholder="Mofify the monitor city" class="form-control" required>
+            @if (editMonitorForm.get('ciudad')?.invalid && editMonitorForm.get('ciudad')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('ciudad')?.errors?.['required']) {
+                    <small>Ciudad is required.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Direccion Field -->
+        <div class="form-group">
+            <label for="direccion">Direccion:</label>
+            <input id="direccion" formControlName="direccion" type="text" placeholder="Mofify the monitor direction" class="form-control" required>
+            @if (editMonitorForm.get('direccion')?.invalid && editMonitorForm.get('direccion')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('direccion')?.errors?.['required']) {
+                    <small>Direccion is required.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Codigo Postal Field -->
+        <div class="form-group">
+            <label for="codigoPostal">Codigo Postal:</label>
+            <input id="codigoPostal" formControlName="codigoPostal" type="text" placeholder="Mofify the monitor postal code" class="form-control" required>
+            @if (editMonitorForm.get('codigoPostal')?.invalid && editMonitorForm.get('codigoPostal')?.touched) {
+                <div class="error-message">
+                  @if (editMonitorForm.get('codigoPostal')?.errors?.['required']) {
+                    <small>Codigo Postal is required.</small>
+                  }
+                  @if (editMonitorForm.get('codigoPostal')?.errors?.['pattern']) {
+                    <small>Codigo Postal must contain 5 numbers.</small>
+                  }
+                </div>
+            }
+        </div>
+
+        @if (errorMessage !== '') {
+            <div class="alert alert-info text-center">
+              {{ errorMessage }}
+            </div>
+        }
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Modificar</button>
+    </form>
+</div>

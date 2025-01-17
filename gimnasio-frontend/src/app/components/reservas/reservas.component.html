@@ -1,0 +1,27 @@
+<div class="reservas-container">
+    <h2 class="reservas-title">Mis Reservas</h2>
+    
+    <!-- Mostrar las reservas si existen -->
+    <div *ngIf="reservas.length > 0; else noReservations">
+      <ul class="reservas-list">
+        <!-- Sintaxis para el ciclo de las reservas -->
+        @for (reserva of reservas; track reserva.id) {
+        <li class="reserva-item">
+          <div class="reserva-details">
+            <strong>{{ reserva.id }}</strong>
+            <p>Fecha: {{ reserva.fechaReserva}}</p>
+            <p>Hora: {{ reserva.hora}}</p>
+          </div>
+          <!-- Botón para cancelar reserva -->
+          <button (click)="cancelarReserva(reserva)" class="cancelar-button">Cancelar Reserva</button>
+        </li>
+        }
+      </ul>
+    </div>
+  
+    <!-- Mensaje cuando no haya reservas -->
+    <ng-template #noReservations>
+      <p class="no-reservas">No tienes reservas actualmente.</p>
+    </ng-template>
+  </div>
+  

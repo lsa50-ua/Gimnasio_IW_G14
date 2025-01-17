@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12"> 
+            <div class="banner-container">
+                <img class="banner-image w-100" src="leaderboard.png" alt="Banner">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">¿Quiénes Somos?</h2>
+      </div>
+    </div>
+  
+    <!-- Contenido principal: Foto a la izquierda, texto a la derecha -->
+    <div class="row mt-4 align-items-center">
+      <!-- Foto del gimnasio -->
+      <div class="col-md-6">
+        <img src="about.jpg" alt="Foto del gimnasio" class="img-fluid rounded">
+      </div>
+  
+      <!-- Descripción del gimnasio -->
+      <div class="col-md-6">
+        <h3 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">{{ encabezado }}</h3>
+        <h4>{{ subEncabezado }}</h4>
+        <p class="lead">{{ descripcion }}</p>
+      </div>
+    </div>
+  
+    <!-- Sección de nuestros entrenadores -->
+    <div class="row text-center mt-5">
+        <div class="col-md-12">
+          <h3 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Nuestros Entrenadores</h3>
+        </div>
+    </div>
+    
+    <!-- Tarjetas de entrenadores en fila horizontal -->
+    <div class="row mt-4 justify-content-center">
+    @for (entrenador of entrenadores; track entrenador.nombre) {
+    <div class="card shadow-sm border-light">
+        <img src="https://st5.depositphotos.com/17433220/73304/i/450/depositphotos_733041150-stock-photo-silhouette-adult-man-male-avatar.jpg" class="card-img-top">
+        <div class="card-body text-center">
+            <h5 class="card-title">{{ entrenador.nombre }}</h5>
+        </div>
+    </div>
+    }
+    </div>
+</div>
+  

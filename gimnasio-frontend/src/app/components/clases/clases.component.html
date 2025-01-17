@@ -1,0 +1,49 @@
+<div class="cal-container">
+  <h2 style="text-align: center;" class="cal-title">Calendario de Clases</h2>
+
+  <!-- Encabezado con botones de navegación -->
+  <div class="cal-header">
+    <button (click)="previousMonth()" class="nav-button">Anterior</button>
+    <h3 class="cal-title">{{ viewDate | date: 'MMMM yyyy' }}</h3>
+    <button (click)="nextMonth()" class="nav-button">Siguiente</button>
+  </div>
+  
+  <!-- Vista del calendario mensual -->
+  <mwl-calendar-month-view
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="onDayClicked($event)"
+    [activeDayIsOpen]="false"
+    (beforeViewRender)="beforeMonthViewRender($event)"
+    class="calendar-view">
+  </mwl-calendar-month-view>
+
+  <!-- Lista de eventos del día seleccionado -->
+  <div class="event-list">
+    <h4>Eventos del día seleccionado:</h4>
+    <ul *ngIf="selectedDayEvents.length > 0; else noEvents" class="event-items">
+      <li *ngFor="let event of selectedDayEvents" class="event-item">
+        <div>
+          <strong>{{ event.title }}</strong>
+          <span>{{ event.start | date: 'shortTime' }} - {{ event.end | date: 'shortTime' }}</span>
+        </div>
+
+        <!-- Botón para reservar o cancelar la clase -->
+        <button *ngIf="!isClassReserved(event.meta.actividad.id)" 
+                (click)="reservarClase(event)" 
+                class="reserve-button">
+          Reservar
+        </button>
+        <button *ngIf="isClassReserved(event.meta.actividad.id)" 
+                (click)="cancelarReserva(event)" 
+                class="cancel-button">
+          Cancelar Reserva
+        </button>
+      </li>
+    </ul>
+    <ng-template #noEvents>
+      <p class="no-events">No hay eventos para este día.</p>
+    </ng-template>
+  </div>
+</div>
+s

@@ -1,0 +1,142 @@
+<div class="container mt-5">
+    <!-- Título de la sección -->
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-uppercase" style="font-family: 'Roboto', sans-serif; color: #000000;">Añadir Usuario</h2>
+      </div>
+    </div>
+</div>
+<div class="form-container">
+    <form [formGroup] = "addUserForm" (ngSubmit)="addUser(tipoUser.value)">
+        <!-- Encabezado -->
+        <h3 class="form-heading ">Añada valores a los campos para continuar.</h3>
+        
+        <!-- Tipo User Field -->
+        <div class="form-group">
+            <label for="tipoUser">Tipo de Usuario:</label>
+            <select id="tipoUser" #tipoUser class="form-control" required>
+                <option value="Socio">Socio</option>
+                <option value="WebMaster">WebMaster</option>
+                <option value="Monitor">Monitor</option>
+            </select>
+        </div>
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" formControlName="email" type="email" placeholder="Enter email" class="form-control" required>
+            @if (addUserForm.get('email')?.invalid && addUserForm.get('email')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('email')?.errors?.['required']) {
+                    <small>Email is required.</small>
+                  }
+                  @if (addUserForm.get('email')?.errors?.['email']) {
+                    <small>Enter a valid email.</small>
+                  }
+                </div>
+              }
+        </div>
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" formControlName="password" type="password" placeholder="Enter password" class="form-control" required>
+            @if (addUserForm.get('password')?.invalid && addUserForm.get('password')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('password')?.errors?.['required']) {
+                    <small>Password is required.</small>
+                  }
+                  @if (addUserForm.get('password')?.errors?.['minlength']) {
+                    <small>Minimum 6 characters required.</small>
+                  }
+                  @if (addUserForm.get('password')?.errors?.['pattern']) {
+                    <small>Password must contain at least one lowercase letter, one capital letter, one simbol and one number.</small>
+                  }
+                </div>
+              }
+        </div>
+        <!-- Nombre Field -->
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" formControlName="nombre" type="text" placeholder="Enter name" class="form-control" required>
+            @if (addUserForm.get('nombre')?.invalid && addUserForm.get('nombre')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('nombre')?.errors?.['required']) {
+                    <small>Nombre is required.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Telefono Field -->
+        <div class="form-group">
+            <label for="telefono">Telefono:</label>
+            <input id="telefono" formControlName="telefono" type="text" placeholder="Enter telephone" class="form-control" required>
+            @if (addUserForm.get('telefono')?.invalid && addUserForm.get('telefono')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('telefono')?.errors?.['required']) {
+                    <small>Telefono is required.</small>
+                  }
+                  @if (addUserForm.get('telefono')?.errors?.['pattern']) {
+                    <small>Telefono must contain 9 numbers.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Ciudad Field -->
+        <div class="form-group">
+            <label for="ciudad">Ciudad:</label>
+            <input id="ciudad" formControlName="ciudad" type="text" placeholder="Enter city" class="form-control" required>
+            @if (addUserForm.get('ciudad')?.invalid && addUserForm.get('ciudad')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('ciudad')?.errors?.['required']) {
+                    <small>Ciudad is required.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Direccion Field -->
+        <div class="form-group">
+            <label for="direccion">Direccion:</label>
+            <input id="direccion" formControlName="direccion" type="text" placeholder="Enter direction" class="form-control" required>
+            @if (addUserForm.get('direccion')?.invalid && addUserForm.get('direccion')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('direccion')?.errors?.['required']) {
+                    <small>Direccion is required.</small>
+                  }
+                </div>
+            }
+        </div>
+        <!-- Codigo Postal Field -->
+        <div class="form-group">
+            <label for="codigoPostal">Codigo Postal:</label>
+            <input id="codigoPostal" formControlName="codigoPostal" type="text" placeholder="Enter postal code" class="form-control" required>
+            @if (addUserForm.get('codigoPostal')?.invalid && addUserForm.get('codigoPostal')?.touched) {
+                <div class="error-message">
+                  @if (addUserForm.get('codigoPostal')?.errors?.['required']) {
+                    <small>Codigo Postal is required.</small>
+                  }
+                  @if (addUserForm.get('codigoPostal')?.errors?.['pattern']) {
+                    <small>Codigo Postal must contain 5 numbers.</small>
+                  }
+                </div>
+            }
+        </div>
+
+        <!-- Activo Field -->
+        <div class="form-group">
+            <label for="activo">Activo:</label>
+            <select id="activo" formControlName="activo" class="form-control" required>
+                <option value="true" selected>Si</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+
+        @if (errorMessage !== '') {
+            <div class="alert alert-info text-center">
+              {{ errorMessage }}
+            </div>
+        }
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Añadir</button>
+    </form>
+</div>
+
