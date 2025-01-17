@@ -18,12 +18,15 @@ import { AddUserComponent } from './components/users/add-user/add-user.component
 import { SaldoComponent } from './components/saldo/saldo.component';
 import { RechargeComponent } from './components/saldo/recharge/recharge.component';
 import { ClasesComponent } from './components/clases/clases.component';
+import { ReservasComponent } from './components/reservas/reservas.component';
+import { InformeComponent } from './components/informe/informe.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        title: 'Home'
+        title: 'Home',
+        canActivate: [AuthenticatedGuard]
     },
     {
         path: 'login',
@@ -34,17 +37,19 @@ export const routes: Routes = [
     {
         path: 'tarifas',
         component: TarifasComponent,
-        title: 'Tarifas'
+        title: 'Tarifas',
+        canActivate: [AuthenticatedGuard]
     },
     {
         path: 'actividades',
         component: ActividadesComponent,
-        title: 'Actividades'
+        title: 'Actividades',
     },
     {
         path: 'quienes-somos',
         component: QuienesSomosComponent,
-        title: 'Quienes Somos'
+        title: 'Quienes Somos',
+        canActivate: [AuthenticatedGuard]
     },
     {
         path: 'contacto',
@@ -94,6 +99,12 @@ export const routes: Routes = [
         canActivate: [WebMasterGuard]
     },
     {
+        path: 'informe',
+        component: InformeComponent,
+        title: 'Informe',
+        canActivate: [WebMasterGuard]
+    },
+    {
         path: 'saldo',
         component: SaldoComponent,
         title: 'Ver Saldo',
@@ -109,6 +120,12 @@ export const routes: Routes = [
         path: 'ver-clases/:id',
         component: ClasesComponent,
         title: 'Clases',
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'reservas',
+        component: ReservasComponent,
+        title: 'Reservas',
         canActivate: [AuthGuard]
     },
     {

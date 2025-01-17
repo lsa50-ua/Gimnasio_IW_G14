@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pago } from '../models/pago';
+import { Pago, PagoGet } from '../models/pago';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class PagoService {
   constructor(private http:HttpClient) { }
 
   // Get all Pagoes
-  getAll():Observable<Pago[]> {
-    return this.http.get<Pago[]>(this.url);
+  getAll():Observable<PagoGet[]> {
+    return this.http.get<PagoGet[]>(this.url);
   }
 
   // Get Pago by id

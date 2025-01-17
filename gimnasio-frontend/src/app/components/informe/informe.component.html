@@ -1,0 +1,54 @@
+<!-- informe.component.html -->
+<div class="informe-container">
+    <h1>Informe de Ingresos</h1>
+  
+    <div class="estadisticas">
+      <h2>Estadísticas Generales</h2>
+      <div class="estadistica">
+        <p><strong>Total Ingresos:</strong> {{ totalIngresos | currency }}</p>
+      </div>
+      <div class="estadistica">
+        <p><strong>Ingresos por Año:</strong></p>
+        <ul>
+            @for(ingreso of ingresosPorAno; track ingreso.year) {
+          <li >
+            {{ ingreso.year }}: {{ ingreso.total | currency }}
+          </li>
+        }
+        </ul>
+      </div>
+      <div class="estadistica">
+        <p><strong>Ingresos por Mes:</strong></p>
+        <ul>
+        @for(ingreso of ingresosPorMes; track ingreso.month) {
+          <li >
+            {{ ingreso.month }}: {{ ingreso.total | currency }}
+          </li>
+        }
+        </ul>
+      </div>
+    </div>
+  
+    <div class="detalle-pagos">
+      <h2>Detalle de Pagos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Coste</th>
+          </tr>
+        </thead>
+        <tbody>
+        @for(pago of pagos; track pago.id) {
+          <tr>
+            <td>{{ pago.id }}</td>
+            <td>{{ pago.fecha }}</td>
+            <td>{{ pago.coste | currency }}</td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

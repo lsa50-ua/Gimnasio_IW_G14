@@ -30,4 +30,14 @@ export class SocioService {
   delete(id:number) {
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  // Reservar actividad (PUT)
+  reservarActividad(socioId: number, fecha: string, hora: string, actividadId: number): Observable<void> {
+    return this.http.put<void>(`${this.url}/${socioId}/reservar/${fecha}/${hora}/${actividadId}`, {});
+  }
+
+  // Cancelar reserva (DELETE)
+  cancelarReserva(socioId: number, reservaId: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${socioId}/reservar/${reservaId}`);
+  }
 }
