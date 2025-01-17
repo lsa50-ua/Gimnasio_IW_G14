@@ -49,7 +49,7 @@ public class SocioController {
 
     @PutMapping("/{socioId}/reservar/{fecha}/{hora}/{actividadId}")
     public void reservarActividad(@PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha,
-                                  @PathVariable("hora") LocalTime hora,
+                                  @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime hora,
                                   @PathVariable("socioId") Long socioId,
                                   @PathVariable("actividadId") Long actividadId) {
         socioService.reservarActividad(fecha, hora, socioId, actividadId);
