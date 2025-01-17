@@ -29,7 +29,7 @@ export class LoginComponent {
           if (response.token) {
             console.log('Credentials Valid');
             this.authService.setToken(response.token);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/actividades']);
           }
           if (response.message) {
             console.log(response.message);

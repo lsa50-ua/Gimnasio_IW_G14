@@ -9,6 +9,9 @@ export const WebMasterGuard: CanActivateFn = (route, state) => {
   if (authService.isAuthenticated() && authService.getUserType() === 'WebMaster') {
     return true;
   }
+  else if (authService.isAuthenticated()) {
+    return router.navigate(['/actividades']);
+  }
   else {
     return router.navigate(['/']);
   }
