@@ -20,6 +20,7 @@ import { RechargeComponent } from './components/saldo/recharge/recharge.componen
 import { ClasesComponent } from './components/clases/clases.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
 import { InformeComponent } from './components/informe/informe.component';
+import { ProductoComponent } from './components/producto/producto.component';
 import { CrearComponent } from './components/clases/crear/crear.component';
 
 export const routes: Routes = [
@@ -128,6 +129,11 @@ export const routes: Routes = [
         component: ReservasComponent,
         title: 'Reservas',
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'tienda',
+        component: ProductoComponent,
+        title: 'Tienda'
     },
     {
         path: 'crear-clase/:id',
