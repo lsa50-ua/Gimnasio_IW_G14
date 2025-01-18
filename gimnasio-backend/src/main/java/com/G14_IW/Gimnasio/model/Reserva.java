@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,8 +27,9 @@ public class Reserva {
     private Actividad actividad;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id")
     @JsonIgnoreProperties("reservas")
+    @Nullable
     private Socio socio;
 
     // Constructores

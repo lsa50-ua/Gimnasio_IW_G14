@@ -19,7 +19,7 @@ public class Socio extends Usuario {
     @JsonManagedReference
     private List<Pago> pagos = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
     private List<Reserva> reservas = new ArrayList<>();
 
