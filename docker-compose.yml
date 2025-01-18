@@ -2,10 +2,11 @@ version: '3.8'
 services:
   app:
     build:
-      context: .
+      context: /gimnasio-backend
       dockerfile: Dockerfile
+    container_name: gimnasio-backend
     ports:
-      - "8080:8080" # Mapea el puerto de la aplicación
+      - "8080:8080" # Mapea el puerto de la aplicación backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/gimnasiodb
       SPRING_DATASOURCE_USERNAME: root
@@ -24,5 +25,16 @@ services:
     volumes:
       - db_data:/var/lib/mysql # Persistencia de datos
 
+  frontend:
+    build:
+      context: /gimnasio-frontend
+      dockerfile: Dockerfile
+    container_name: gimnasio-frontend
+    ports:
+      - "4200:80" # El frontend estará accesible en el puerto 4200
+    depends_on:
+      - app
+
 volumes:
   db_data:
+
