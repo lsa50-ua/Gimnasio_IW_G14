@@ -23,6 +23,9 @@ FROM nginx:stable
 # Copiar la carpeta de salida de la aplicación al contenedor de Nginx
 COPY --from=build /app/dist/gimnasio-frontend/browser /usr/share/nginx/html
 
+# Copiar el archivo de configuración personalizado de Nginx
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # Exponer el puerto 80 para acceder a la aplicación
 EXPOSE 80
 
