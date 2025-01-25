@@ -2,7 +2,7 @@ version: '3.8'
 services:
   app:
     build:
-      context: /gimnasio-backend
+      context: ./gimnasio-backend
       dockerfile: Dockerfile
     container_name: gimnasio-backend
     ports:
@@ -27,7 +27,7 @@ services:
 
   frontend:
     build:
-      context: /gimnasio-frontend
+      context: ./gimnasio-frontend
       dockerfile: Dockerfile
     container_name: gimnasio-frontend
     ports:
